@@ -20,6 +20,11 @@ class Person < Nameable
     true if is_of_age? || @parent_permission
   end
 
+  def add_rental()
+    @rental.push(rental)
+    rental.person = self
+  end
+
   private
 
   def of_age?
