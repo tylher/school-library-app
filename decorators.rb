@@ -6,8 +6,8 @@ end
 
 class CorrectName < Nameable
   def initialize(nameable)
-    super
     @nameable = nameable
+    super()
   end
 
   def correct_name
