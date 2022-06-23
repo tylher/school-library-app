@@ -4,7 +4,7 @@ class Nameable
   end
 end
 
-class CorrectName < Nameable
+class Decorator < Nameable
   def initialize(nameable)
     @nameable = nameable
     super()
@@ -15,13 +15,13 @@ class CorrectName < Nameable
   end
 end
 
-class CapitalizeDecorator < CorrectName
+class CapitalizeDecorator < Decorator
   def correct_name
     @nameable.correct_name.capitalize
   end
 end
 
-class TrimmerDecorator < CorrectName
+class TrimmerDecorator < Decorator
   def correct_name
     @nameable.correct_name[0, 10] if @nameable.correct_name.length > 10
   end
