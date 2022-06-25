@@ -18,4 +18,3 @@ class Student < Person
   end
 end
 
-puts Student.new('', 12, 'Taiwo').name

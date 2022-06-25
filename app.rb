@@ -38,8 +38,10 @@ class App
       create_rental
     when '6'
       list_rental
-    else
+    when '7'
       exit
+    else
+      puts "invalid input"
     end
   end
 
@@ -132,7 +134,7 @@ class App
 
   def list_rental
     list_people
-    print 'type an id from the options above'
+    print "\ntype an id from the options above\n"
     print 'id: '
     id = gets.chomp.to_i
     if @ids.include?(id)
@@ -140,7 +142,7 @@ class App
         if rental.person.id == id
           puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
         else
-          puts 'No rental for this ID'
+          puts '\nNo rental for this ID'
         end
       end
     else
