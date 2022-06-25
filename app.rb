@@ -38,10 +38,8 @@ class App
       create_rental
     when '6'
       list_rental
-    when '7'
-      exit
     else
-      puts "invalid input"
+      exit
     end
   end
 
