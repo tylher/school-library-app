@@ -1,12 +1,14 @@
 require './student'
 require './teacher'
 require './book'
+require './rental'
 
 class App
   def initialize
     @books = []
     @people = []
     @rentals = []
+    @ids = []
   end
 
   def entry
@@ -35,7 +37,7 @@ class App
     when '5'
       create_rental
     when '6'
-      list_rental(id)
+      list_rental
     else
       exit
     end
@@ -77,10 +79,12 @@ class App
     when 'y'
       student = Student.new('', age, name, parent_permission: true)
       @people << student
+      @ids << student.id
       puts 'Student created successfully!'
     when 'n'
       student = Student.new('', age, name, parent_permission: false)
       @people << student
+      @ids << student.id
       puts 'Student created successfully!'
     else
       print 'input not valid'
@@ -92,6 +96,7 @@ class App
     specialization = gets.chomp
     teacher = Teacher.new(age, specialization, name)
     @people << teacher
+    @ids << teacher.id
     puts 'Teacher created successfully!'
   end
 
@@ -106,6 +111,40 @@ class App
       puts 'book created successfully'
     else
       puts 'invalid inputs'
+    end
+  end
+
+  def create_rental
+    print "please select the person who wants to rent (by postion on the list)\n"
+    list_people
+    person_no = gets.chomp.to_i
+    person = @people[person_no - 1]
+    print "\nplease select the book to be rented\n"
+    list_books
+    book_no = gets.chomp.to_i
+    book = @books[book_no - 1]
+    print 'date[yyyy/mm/dd]: '
+    date = gets.chomp
+    rental = Rental.new(date, book, person)
+    @rentals << rental
+    puts 'rental successfully created'
+  end
+
+  def list_rental
+    list_people
+    print 'type an id from the options above'
+    print 'id: '
+    id = gets.chomp.to_i
+    if @ids.include?(id)
+      @rentals.each do |rental|
+        if rental.person.id == id
+          puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
+        else
+          puts 'No rental for this ID'
+        end
+      end
+    else
+      puts 'id not found'
     end
   end
 end
