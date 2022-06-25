@@ -1,3 +1,7 @@
+require './student'
+require './teacher'
+require './book'
+
 class App
   def initialize
     @books = []
@@ -38,29 +42,70 @@ class App
   end
 
   def list_books
-    @books.each { |book| puts book }
+    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author} " }
+  end
+
+  def list_people
+    @people.each do |person|
+      if person.is_a?(Student)
+        puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} "
+      else
+        puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} "
+      end
+    end
   end
 
   def create_person
     print 'Do you want to create a student(1) or a teacher(2)? [input a number]: '
     choice = gets.chomp
-    create_student if choice == '1'
+    print 'name: '
+    person_name = gets.chomp
+    print 'age: '
+    person_age = gets.chomp
+    case choice
+    when '1'
+      create_student(person_name, person_age)
+    else
+      create_teacher(person_name, person_age)
+    end
   end
 
-  def create_student
-    print 'name: '
-    name = $stdin.gets
-    print 'age: '
-    age = $stdin.gets
-    print 'Does student have parent\'s permission? [Y/N]'
+  def create_student(name, age)
+    print 'Does student have parent\'s permission? [Y/N] '
     ans = gets.chomp
-    if ans.downcase == 'y'
-      parent_permission = true
-      elseif ans.downcase == 'n'
-      parent_permission = false
+    case ans.downcase
+    when 'y'
+      student = Student.new('', age, name, parent_permission: true)
+      @people << student
+      puts 'Student created successfully!'
+    when 'n'
+      student = Student.new('', age, name, parent_permission: false)
+      @people << student
+      puts 'Student created successfully!'
     else
       print 'input not valid'
     end
-    puts age, name, parent_permission
+  end
+
+  def create_teacher(name, age)
+    print 'what is your specialization? '
+    specialization = gets.chomp
+    teacher = Teacher.new(age, specialization, name)
+    @people << teacher
+    puts 'Teacher created successfully!'
+  end
+
+  def create_book
+    print 'title: '
+    title = gets.chomp
+    print 'author: '
+    author = gets.chomp
+    if title != '' && author != ''
+      book = Book.new(title, author)
+      @books << book
+      puts 'book created successfully'
+    else
+      puts 'invalid inputs'
+    end
   end
 end

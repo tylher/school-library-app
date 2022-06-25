@@ -7,7 +7,7 @@ class Main
 
   def handle_ui
     loop do
-      app.entry
+      @app.entry
       option = gets.chomp
       print "\n"
       @app.run(option)
