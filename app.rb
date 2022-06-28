@@ -4,6 +4,8 @@ require './book'
 require './rental'
 
 class App
+  attr_accessor :books, :people, :rentals, :ids
+
   def initialize
     @books = []
     @people = []
@@ -22,39 +24,6 @@ class App
     \r6 - List all rental for a given id
     \r7 - Exit"
     puts "\n"
-  end
-
-  def run(option)
-    case option
-    when '1'
-      list_books
-    when '2'
-      list_people
-    when '3'
-      create_person
-    when '4'
-      create_book
-    when '5'
-      create_rental
-    when '6'
-      list_rental
-    else
-      exit
-    end
-  end
-
-  def list_books
-    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author} " }
-  end
-
-  def list_people
-    @people.each do |person|
-      if person.is_a?(Student)
-        puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} "
-      else
-        puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} "
-      end
-    end
   end
 
   def create_person
@@ -128,23 +97,5 @@ class App
     rental = Rental.new(date, book, person)
     @rentals << rental
     puts 'rental successfully created'
-  end
-
-  def list_rental
-    list_people
-    print "\ntype an id from the options above\n"
-    print 'id: '
-    id = gets.chomp.to_i
-    if @ids.include?(id)
-      @rentals.each do |rental|
-        if rental.person.id == id
-          puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
-        else
-          puts '\nNo rental for this ID'
-        end
-      end
-    else
-      puts 'id not found'
-    end
   end
 end
