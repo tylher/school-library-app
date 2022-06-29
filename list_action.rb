@@ -28,7 +28,7 @@ def list_rental
   print "\ntype an id from the options above\n"
   print 'id: '
   id = gets.chomp.to_i
-  if @app.i6ds.include?(id)
+  if @app.ids.include?(id)
     @rentals.each do |rental|
       if rental.person.id == id
         puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
