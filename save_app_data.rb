@@ -17,6 +17,6 @@ module SaveData
       }
     end
     books_data = JSON.generate(saved_books)
-    File.write('./data/books.json', books_data, mode: "a")
+    File.write('./data/books.json', books_data)
   end
 end

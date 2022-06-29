@@ -2,12 +2,16 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require './load_app_data'
+require 'json'
 
 class App
   attr_accessor :books, :people, :rentals, :ids
 
+  include LoadData
+
   def initialize
-    @books = []
+    @books = load_books
     @people = []
     @rentals = []
     @ids = []

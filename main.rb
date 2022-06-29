@@ -2,6 +2,7 @@ require './app'
 require './list_action'
 require './create_actions'
 require './save_app_data'
+require 'json'
 
 class Main
   include SaveData
