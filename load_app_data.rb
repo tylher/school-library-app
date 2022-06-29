@@ -5,7 +5,7 @@ module LoadData
     books = []
     if File.exist?('./data/books.json')
       if File.empty?('./data/books.json')
-        File.write('./data/book.json', [])
+        File.write('./data/books.json', [])
       else
         loaded_books = JSON.parse(File.read('./data/books.json'))
         loaded_books.each do |book|
@@ -13,7 +13,7 @@ module LoadData
         end
       end
     else
-      File.write('./data/book.json', [])
+      File.write('./data/books.json', [])
     end
     books
   end
@@ -38,5 +38,26 @@ module LoadData
       File.write('./data/people.json', [])
     end
     people
+  end
+
+  def load_rentals(books, people)
+    rentals = []
+    if File.exist?('./data/rentals.json')
+      if File.empty?('./data/rentals.json')
+        File.write('./data/rentals.json', [])
+      else
+        loaded_rentals = JSON.parse(File.read('./data/rentals.json'))
+        loaded_rentals.each do |rental|
+          rentals << Rental.new(rental['date'], books.find do |book|
+            book.title == rental['book_title']
+          end, people.find do |person|
+            person.name == rental['name']
+          end)
+        end
+      end
+    else
+      File.write('./data/rentals.json', [])
+    end
+    rentals
   end
 end

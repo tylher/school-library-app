@@ -30,7 +30,7 @@ class Main
       list_rental
     when 7
       puts 'Goodbye!!'
-      save_data(@app.books, @app.people)
+      save_data(@app.books, @app.people, @app.rentals)
       exit
     else
       puts 'Invalid selection, please input a valid number'

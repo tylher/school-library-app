@@ -4,9 +4,10 @@ require './rental'
 require 'json'
 
 module SaveData
-  def save_data(books, people)
+  def save_data(books, people, rentals)
     save_books(books)
     save_person(people)
+    save_rentals(rentals)
   end
 
   def save_books(books)
@@ -48,9 +49,12 @@ module SaveData
     rentals.each do |rental|
       saved_rentals << {
         date: rental.date,
+        id: rental.person.id,
+        name: rental.person.name,
         book_title: rental.book.title,
-        book_author: rental.boot.author
+        book_author: rental.book.author
       }
     end
-    File.write('./data/books.json', JSON.parse(saved_rentals))
+    File.write('./data/rentals.json', JSON.generate(saved_rentals))
+  end
 end
