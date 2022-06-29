@@ -4,21 +4,19 @@ require './rental'
 require 'json'
 
 class SaveData
-  def save_data(books, people, rentals)
+  def save_data(books)
     save_books(books)
-    save_persons(people)
-    save_rentals(rentals)
   end
 
-  def save_books
+  def save_books(books)
     saved_books = []
-    book.each do |book|
+    books.each do |book|
       saved_books << {
         title: book.title
         author: book.author
       }
     end
-    books_data = JSON.generate(save_books)
+    books_data = JSON.generate(saved_books)
     File.write('./data/books.json', books_data, mode: "a")
   end
 end
