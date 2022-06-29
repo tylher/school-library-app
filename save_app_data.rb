@@ -42,4 +42,15 @@ module SaveData
     end
     File.write('./data/people.json', JSON.generate(saved_people))
   end
+
+  def save_rentals(rentals)
+    saved_rentals = []
+    rentals.each do |rental|
+      saved_rentals << {
+        date: rental.date,
+        book_title: rental.book.title,
+        book_author: rental.boot.author
+      }
+    end
+    File.write('./data/books.json', JSON.parse(saved_rentals))
 end
