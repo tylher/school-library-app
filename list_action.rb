@@ -14,6 +14,7 @@ def list_books
 end
 
 def list_people
+  puts 'kral'
   @app.people.each do |person|
     if person.is_a?(Student)
       puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} "
@@ -28,15 +29,11 @@ def list_rental
   print "\ntype an id from the options above\n"
   print 'id: '
   id = gets.chomp.to_i
-  if @app.ids.include?(id)
-    @rentals.each do |rental|
-      if rental.person.id == id
-        puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
-      else
-        puts '\nNo rental for this ID'
-      end
+  @app.rentals.each do |rental|
+    if rental.person.id == id
+      puts "date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author} "
+    else
+      puts '\nNo rental for this ID'
     end
-  else
-    puts 'id not found'
   end
 end
