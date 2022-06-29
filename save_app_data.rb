@@ -3,7 +3,7 @@ require './student'
 require './rental'
 require 'json'
 
-class SaveData
+module SaveData
   def save_data(books)
     save_books(books)
   end
@@ -12,7 +12,7 @@ class SaveData
     saved_books = []
     books.each do |book|
       saved_books << {
-        title: book.title
+        title: book.title,
         author: book.author
       }
     end
