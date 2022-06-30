@@ -8,5 +8,6 @@ describe Solver do
   end
 
   it 'raise an exception when a negative integer is entered' do
-    expect(solver.factorial(-2).to raise_error(StandarError))
+    expect { solver.factorial(-5) }.to raise_error(RuntimeError)
+  end
 end
