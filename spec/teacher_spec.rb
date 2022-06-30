@@ -10,4 +10,13 @@ describe Teacher do
   it 'confirm specialization' do
     expect(@teacher.specialization).to eq('Mathematics')
   end
+
+  it 'capitalize name' do
+    teacher_update = CapitalizeDecorator.new(@teacher)
+    expect(teacher_update.correct_name).to eql('Victor')
+  end
+  it 'trim name if length is more than 10' do
+    teacher_update_2 = TrimmerDecorator.new(@teacher)
+    expect(teacher_update_2.correct_name).to eql('Victor')
+  end
 end
