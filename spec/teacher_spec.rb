@@ -16,7 +16,7 @@ describe Teacher do
     expect(teacher_update.correct_name).to eql('Victor')
   end
   it 'trim name if length is more than 10' do
-    teacher_update_2 = TrimmerDecorator.new(@teacher)
-    expect(teacher_update_2.correct_name).to eql('Victor')
+    teacher_update_two = TrimmerDecorator.new(@teacher)
+    expect(teacher_update_two.correct_name).to eql('Victor')
   end
 end
