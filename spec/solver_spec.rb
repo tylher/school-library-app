@@ -1,3 +1,5 @@
+require './spec/spec_helper.rb'
+
 describe Solver do
   solver = Solver.new
 
