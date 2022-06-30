@@ -11,4 +11,8 @@ describe Person do
   it 'check if person can use service' do
     expect(@person.can_use_services?).to eql(true)
   end
+
+  it 'returns the correct name' do
+    expect(@person.name).to eq('Ade')
+  end
 end
