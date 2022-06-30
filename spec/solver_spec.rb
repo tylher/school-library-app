@@ -1,9 +1,7 @@
-describe 'Solver' do
-  it 'calls the factorial method to return the factorial of given input' do
-    integer = double(n)
-    expect(integer).to receive(:factorial).with(5)
+describe Solver do
+  solver = Solver.new
 
-    factorial_of_input = Solver.new(integer)
-    factorial_of_input.factorial(5)
+  it 'calls the factorial method to return the factorial of given input' do
+    expect(solver.factorial(5)).to eq 120
   end
 end
