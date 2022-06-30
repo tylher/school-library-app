@@ -7,10 +7,10 @@ describe Book do
   it 'Check if object is an instance of book' do
     expect(@book).to be_instance_of Book
   end
-  it '#title' do
+  it 'check the title attribute' do
     expect(@book.title).to eql 'Title'
   end
-  it '#author' do
+  it 'check the author attribute' do
     expect(@book.author).to_not eql 'Hamedon'
   end
 end
