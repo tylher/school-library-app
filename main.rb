@@ -1,8 +1,11 @@
 require './app'
 require './list_action'
 require './create_actions'
+require './save_app_data'
+require 'json'
 
 class Main
+  include SaveData
   print "Welcome to the School library app \n\n"
   def initialize
     @app = App.new
@@ -27,6 +30,7 @@ class Main
       list_rental
     when 7
       puts 'Goodbye!!'
+      save_data(@app.books, @app.people, @app.rentals)
       exit
     else
       puts 'Invalid selection, please input a valid number'
